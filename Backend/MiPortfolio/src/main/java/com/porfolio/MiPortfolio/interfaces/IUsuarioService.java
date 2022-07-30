@@ -9,9 +9,9 @@ public interface IUsuarioService {
     
     List<Usuario> getUsuario();
     
-    public void saveUsuario();
+    public void saveUsuario(Usuario usuario);
     
-    public void deleteUsuario();
+    public void deleteUsuario(Long id);
     
     public Usuario findUsuario(Long id);
     

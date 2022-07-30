@@ -9,9 +9,9 @@ public interface ITecnologiaService {
     
     List<Tecnologia> getTecnologia();
     
-    public void saveTecnologia();
+    public void saveTecnologia(Tecnologia tecnologia);
     
-    public void deleteTecnologia();
+    public void deleteTecnologia(Long id);
     
     public Tecnologia findTecnologia(Long id);
     
