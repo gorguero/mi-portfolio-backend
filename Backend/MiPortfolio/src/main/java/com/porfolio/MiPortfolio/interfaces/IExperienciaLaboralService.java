@@ -9,9 +9,9 @@ public interface IExperienciaLaboralService {
     
     List<ExperienciaLaboral> getExperienciaLaboral();
     
-    public void saveExperienciaLaboral();
+    public void saveExperienciaLaboral(ExperienciaLaboral expLaboral);
     
-    public void deleteExperienciaLaboral();
+    public void deleteExperienciaLaboral(Long id);
     
     public ExperienciaLaboral findExperienciaLaboral(Long id);
     

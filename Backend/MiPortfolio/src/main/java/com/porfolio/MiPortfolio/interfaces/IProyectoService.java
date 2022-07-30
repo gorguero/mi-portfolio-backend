@@ -9,9 +9,9 @@ public interface IProyectoService {
     
     List<Proyecto> getProyecto();
     
-    public void saveProyecto();
+    public void saveProyecto(Proyecto proyecto);
     
-    public void deleteProyecto();
+    public void deleteProyecto(Long id);
     
     public Proyecto findProyecto(Long id);
     
