@@ -26,9 +26,9 @@ public class UsuarioController {
     }
     
     @PostMapping ("/usuario/crear")
-    public String agregarUsuario(@RequestBody Usuario usuario){
+    public void agregarUsuario(@RequestBody Usuario usuario){
         userService.saveUsuario(usuario);
-        return "Se creado correctamente";
+//        return "Se creado correctamente";
     }
     
     @DeleteMapping ("/usuario/borrar/{id}")
@@ -41,7 +41,8 @@ public class UsuarioController {
     public Usuario editarUsuario(@PathVariable Long id,
                                 @RequestParam ("nombre") String nuevoNombre,
                                 @RequestParam ("apellido") String nuevoApellido,
-                                @RequestParam ("presentacion") String nuevoPresentacion,
+                                @RequestParam ("presentacionUno") String nuevoPresentacionUno,
+                                @RequestParam ("presentacionDos") String nuevoPresentacionDos,
                                 @RequestParam ("telefono") String nuevoTelefono,
                                 @RequestParam ("email") String nuevoEmail,
                                 @RequestParam ("ubicacion") String nuevoUbicacion,
@@ -51,7 +52,8 @@ public class UsuarioController {
         
         usuario.setNombre(nuevoNombre);
         usuario.setApellido(nuevoApellido);
-        usuario.setPresentacion(nuevoPresentacion);
+        usuario.setPresentacionUno(nuevoPresentacionUno);
+        usuario.setPresentacionDos(nuevoPresentacionDos);
         usuario.setTelefono(nuevoTelefono);
         usuario.setEmail(nuevoEmail);
         usuario.setUbicacion(nuevoUbicacion);

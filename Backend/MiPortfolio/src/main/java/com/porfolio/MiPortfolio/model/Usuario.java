@@ -22,7 +22,8 @@ public class Usuario implements Serializable{
     
     private String nombre;
     private String apellido;
-    private String presentacion;
+    private String presentacionUno;
+    private String presentacionDos;
     private String telefono;
     private String email;
     private String ubicacion;
@@ -48,11 +49,12 @@ public class Usuario implements Serializable{
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String nombre, String apellido, String presentacion, String telefono, String email, String ubicacion, String link_perfil) {
+    public Usuario(Long idUsuario, String nombre, String apellido, String presentacionUno, String presentacionDos, String telefono, String email, String ubicacion, String link_perfil) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.presentacion = presentacion;
+        this.presentacionUno = presentacionUno;
+        this.presentacionDos = presentacionDos;
         this.telefono = telefono;
         this.email = email;
         this.ubicacion = ubicacion;
@@ -83,13 +85,21 @@ public class Usuario implements Serializable{
         this.apellido = apellido;
     }
 
-    public String getPresentacion() {
-        return presentacion;
+    public String getPresentacionUno() {
+        return presentacionUno;
     }
 
-    public void setPresentacion(String presentacion) {
-        this.presentacion = presentacion;
+    public void setPresentacionUno(String presentacionUno) {
+        this.presentacionUno = presentacionUno;
     }
+
+    public String getPresentacionDos() {
+        return presentacionDos;
+    }
+
+    public void setPresentacionDos(String presentacionDos) {
+        this.presentacionDos = presentacionDos;
+    }   
 
     public String getTelefono() {
         return telefono;
