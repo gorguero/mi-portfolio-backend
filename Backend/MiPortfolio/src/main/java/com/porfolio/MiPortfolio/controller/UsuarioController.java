@@ -5,6 +5,7 @@ import com.porfolio.MiPortfolio.interfaces.IUsuarioService;
 import com.porfolio.MiPortfolio.model.Usuario;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,18 @@ public class UsuarioController {
     @GetMapping ("/usuario/obtener")
     public List<Usuario> getUsuario(){
         return userService.getUsuario();
+    }
+    
+    @PostMapping ("/usuario/crear")
+    public String agregarUsuario(@RequestBody Usuario usuario){
+        userService.saveUsuario(usuario);
+        return "Se creado correctamente";
+    }
+    
+    @DeleteMapping ("/usuario/borrar/{id}")
+    public String eliminarUsuario(@PathVariable Long id){
+        userService.deleteUsuario(id);
+        return "Se ha eliminado correctamente";
     }
     
     @PutMapping ("/usuario/editar/{id}")
