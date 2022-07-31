@@ -26,9 +26,9 @@ public class UsuarioController {
     }
     
     @PostMapping ("/usuario/crear")
-    public void agregarUsuario(@RequestBody Usuario usuario){
+    public String agregarUsuario(@RequestBody Usuario usuario){
         userService.saveUsuario(usuario);
-//        return "Se creado correctamente";
+        return "Se creado correctamente";
     }
     
     @DeleteMapping ("/usuario/borrar/{id}")
