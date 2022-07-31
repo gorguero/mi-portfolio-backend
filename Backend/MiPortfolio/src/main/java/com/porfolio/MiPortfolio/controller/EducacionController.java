@@ -40,7 +40,7 @@ public class EducacionController {
     }
     
     // URL -> PUERTO/educacion/editar/{id}/nombre&tanto&tanto&
-    @PutMapping
+    @PutMapping ("/educacion/editar/{id}")
     public Educacion editarEducacion(@PathVariable Long id,
                                     @RequestParam ("nombreInsti") String nuevoNombreInsti,
                                     @RequestParam ("link_logo") String nuevoLogo,
