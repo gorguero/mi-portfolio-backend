@@ -42,13 +42,15 @@ public class ProyectoController {
     public Proyecto editarProyecto(@PathVariable Long id,
                                 @RequestParam ("titulo") String nuevoTitulo,
                                 @RequestParam ("descripcion") String nuevoDescripcion,
-                                @RequestParam ("link_portada") String nuevoPortada){
+                                @RequestParam ("link_portada") String nuevoPortada,
+                                @RequestParam ("link_proyecto") String nuevoLinkProyecto){
         
         Proyecto proyecto = proyectoService.findProyecto(id);
         
         proyecto.setTitulo(nuevoTitulo);
         proyecto.setDescripcion(nuevoDescripcion);
         proyecto.setLink_portada(nuevoPortada);
+        proyecto.setLink_proyecto(nuevoLinkProyecto);
         
         proyectoService.saveProyecto(proyecto);
         
