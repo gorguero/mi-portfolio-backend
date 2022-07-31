@@ -39,14 +39,14 @@ public class UsuarioController {
     
     @PutMapping ("/usuario/editar/{id}")
     public Usuario editarUsuario(@PathVariable Long id,
-                                @RequestParam ("nombre") String nuevoNombre,
-                                @RequestParam ("apellido") String nuevoApellido,
-                                @RequestParam ("presentacionUno") String nuevoPresentacionUno,
-                                @RequestParam ("presentacionDos") String nuevoPresentacionDos,
-                                @RequestParam ("telefono") String nuevoTelefono,
-                                @RequestParam ("email") String nuevoEmail,
-                                @RequestParam ("ubicacion") String nuevoUbicacion,
-                                @RequestParam ("link_perfil") String nuevoPerfil){
+                                @RequestParam("nombre") String nuevoNombre,
+                                @RequestParam("apellido") String nuevoApellido,
+                                @RequestParam("presentacionUno") String nuevoPresentacionUno,
+                                @RequestParam("presentacionDos") String nuevoPresentacionDos,
+                                @RequestParam("telefono") String nuevoTelefono,
+                                @RequestParam("email") String nuevoEmail,
+                                @RequestParam("ubicacion") String nuevoUbicacion,
+                                @RequestParam("link_perfil") String nuevoPerfil){
         
         Usuario usuario = userService.findUsuario(id);
         
