@@ -61,4 +61,9 @@ public class EducacionController {
         return educacion;
     }
     
+    @GetMapping ("/educacion/encontrar/{id}")
+    public Educacion findUsuario(@PathVariable Long id){
+        return educacionService.findEducacion(id);
+    }
+    
 }
