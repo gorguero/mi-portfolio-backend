@@ -46,7 +46,8 @@ public class UsuarioController {
                                 @RequestParam("telefono") String nuevoTelefono,
                                 @RequestParam("email") String nuevoEmail,
                                 @RequestParam("ubicacion") String nuevoUbicacion,
-                                @RequestParam("link_perfil") String nuevoPerfil){
+                                @RequestParam("link_perfil") String nuevoPerfil,
+                                @RequestParam("perfilLaboral") String nuevoPerfilLaboral){
         
         Usuario usuario = userService.findUsuario(id);
         
@@ -58,6 +59,7 @@ public class UsuarioController {
         usuario.setEmail(nuevoEmail);
         usuario.setUbicacion(nuevoUbicacion);
         usuario.setLink_perfil(nuevoPerfil);
+        usuario.setPerfilLaboral(nuevoPerfilLaboral);
         
         userService.saveUsuario(usuario);
         
