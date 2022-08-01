@@ -69,4 +69,9 @@ public class UsuarioController {
         
     }
     
+    @GetMapping ("/usuario/encontrar/{id}")
+    public Usuario findUsuario(@PathVariable Long id){
+        return userService.findUsuario(id);
+    }
+    
 }
