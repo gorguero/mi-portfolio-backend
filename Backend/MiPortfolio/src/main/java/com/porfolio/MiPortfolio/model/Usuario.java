@@ -28,6 +28,7 @@ public class Usuario implements Serializable{
     private String email;
     private String ubicacion;
     private String link_perfil;
+    private String perfilLaboral;
 //    private String nickname;
 //    private String password;
     
@@ -49,7 +50,7 @@ public class Usuario implements Serializable{
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String nombre, String apellido, String presentacionUno, String presentacionDos, String telefono, String email, String ubicacion, String link_perfil) {
+    public Usuario(Long idUsuario, String nombre, String apellido, String presentacionUno, String presentacionDos, String telefono, String email, String ubicacion, String link_perfil, String perfilLaboral) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -59,6 +60,7 @@ public class Usuario implements Serializable{
         this.email = email;
         this.ubicacion = ubicacion;
         this.link_perfil = link_perfil;
+        this.perfilLaboral = perfilLaboral;
     }
 
     public Long getIdUsuario() {
@@ -132,7 +134,13 @@ public class Usuario implements Serializable{
     public void setLink_perfil(String link_perfil) {
         this.link_perfil = link_perfil;
     }
-    
-    
+
+    public String getPerfilLaboral() {
+        return perfilLaboral;
+    }
+
+    public void setPerfilLaboral(String perfilLaboral) {
+        this.perfilLaboral = perfilLaboral;
+    }   
     
 }
