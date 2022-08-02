@@ -52,4 +52,9 @@ public class TecnologiaController {
         return tecnologia;
     }
     
+    @GetMapping ("/tecnologia/encontrar/{id}")
+    public Tecnologia findTecnologia(@PathVariable Long id){
+        return tecnologiaService.findTecnologia(id);
+    }
+    
 }
