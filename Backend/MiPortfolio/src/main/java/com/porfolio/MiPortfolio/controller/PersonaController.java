@@ -1,8 +1,7 @@
 
 package com.porfolio.MiPortfolio.controller;
 
-import com.porfolio.MiPortfolio.interfaces.IUsuarioService;
-import com.porfolio.MiPortfolio.model.Usuario;
+import com.porfolio.MiPortfolio.model.Persona;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,33 +13,34 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.porfolio.MiPortfolio.interfaces.IPersonaService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class UsuarioController {
+public class PersonaController {
     
     @Autowired
-    private IUsuarioService userService;
+    private IPersonaService personaService;
     
-    @GetMapping ("/usuario/obtener")
-    public List<Usuario> getUsuario(){
-        return userService.getUsuario();
+    @GetMapping ("/persona/obtener")
+    public List<Persona> getPersona(){
+        return personaService.getPersona();
     }
     
-    @PostMapping ("/usuario/crear")
-    public String agregarUsuario(@RequestBody Usuario usuario){
-        userService.saveUsuario(usuario);
+    @PostMapping ("/persona/crear")
+    public String agregarPersona(@RequestBody Persona persona){
+        personaService.savePersona(persona);
         return "Se creado correctamente";
     }
     
-    @DeleteMapping ("/usuario/borrar/{id}")
-    public String eliminarUsuario(@PathVariable Long id){
-        userService.deleteUsuario(id);
+    @DeleteMapping ("/persona/borrar/{id}")
+    public String eliminarPersona(@PathVariable Long id){
+        personaService.deletePersona(id);
         return "Se ha eliminado correctamente";
     }
     
-    @PutMapping ("/usuario/editar/{id}")
-    public Usuario editarUsuario(@PathVariable Long id,
+    @PutMapping ("/persona/editar/{id}")
+    public Persona editarPersona(@PathVariable Long id,
                                 @RequestParam("nombre") String nuevoNombre,
                                 @RequestParam("apellido") String nuevoApellido,
                                 @RequestParam("presentacionUno") String nuevoPresentacionUno,
@@ -51,27 +51,27 @@ public class UsuarioController {
                                 @RequestParam("link_perfil") String nuevoPerfil,
                                 @RequestParam("perfilLaboral") String nuevoPerfilLaboral){
         
-        Usuario usuario = userService.findUsuario(id);
+        Persona persona = personaService.findPersona(id);
         
-        usuario.setNombre(nuevoNombre);
-        usuario.setApellido(nuevoApellido);
-        usuario.setPresentacionUno(nuevoPresentacionUno);
-        usuario.setPresentacionDos(nuevoPresentacionDos);
-        usuario.setTelefono(nuevoTelefono);
-        usuario.setEmail(nuevoEmail);
-        usuario.setUbicacion(nuevoUbicacion);
-        usuario.setLink_perfil(nuevoPerfil);
-        usuario.setPerfilLaboral(nuevoPerfilLaboral);
+        persona.setNombre(nuevoNombre);
+        persona.setApellido(nuevoApellido);
+        persona.setPresentacionUno(nuevoPresentacionUno);
+        persona.setPresentacionDos(nuevoPresentacionDos);
+        persona.setTelefono(nuevoTelefono);
+        persona.setEmail(nuevoEmail);
+        persona.setUbicacion(nuevoUbicacion);
+        persona.setLink_perfil(nuevoPerfil);
+        persona.setPerfilLaboral(nuevoPerfilLaboral);
         
-        userService.saveUsuario(usuario);
+        personaService.savePersona(persona);
         
-        return usuario;
+        return persona;
         
     }
     
-    @GetMapping ("/usuario/encontrar/{id}")
-    public Usuario findUsuario(@PathVariable Long id){
-        return userService.findUsuario(id);
+    @GetMapping ("/persona/encontrar/{id}")
+    public Persona findPersona(@PathVariable Long id){
+        return personaService.findPersona(id);
     }
     
 }
