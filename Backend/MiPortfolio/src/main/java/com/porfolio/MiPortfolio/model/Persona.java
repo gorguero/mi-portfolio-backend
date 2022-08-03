@@ -13,12 +13,12 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Usuario implements Serializable{
+public class Persona implements Serializable{
     
     @Id
     @GeneratedValue (strategy=GenerationType.AUTO)
     @Column(nullable=false, updatable=false)
-    private Long idUsuario;
+    private Long idPersona;
     
     private String nombre;
     private String apellido;
@@ -47,11 +47,11 @@ public class Usuario implements Serializable{
     @OneToMany
     private List<Tecnologia> tecnologiaList;
 
-    public Usuario() {
+    public Persona() {
     }
 
-    public Usuario(Long idUsuario, String nombre, String apellido, String presentacionUno, String presentacionDos, String telefono, String email, String ubicacion, String link_perfil, String perfilLaboral) {
-        this.idUsuario = idUsuario;
+    public Persona(Long idPersona, String nombre, String apellido, String presentacionUno, String presentacionDos, String telefono, String email, String ubicacion, String link_perfil, String perfilLaboral) {
+        this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
         this.presentacionUno = presentacionUno;
@@ -63,12 +63,12 @@ public class Usuario implements Serializable{
         this.perfilLaboral = perfilLaboral;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
+    public Long getIdPersona() {
+        return idPersona;
     }
 
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdPersona(Long idPersona) {
+        this.idPersona = idPersona;
     }
 
     public String getNombre() {
