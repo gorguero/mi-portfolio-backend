@@ -19,7 +19,7 @@ public class UsuarioService {
         return iUsuarioRepository.findByNombreUsuario(nickname);
     }
     public boolean existByNickname(String nickname){
-        return iUsuarioRepository.existByNombreUsuario(nickname);
+        return iUsuarioRepository.existByNickname(nickname);
     }
     
     public boolean existByEmail(String email){
