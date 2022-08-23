@@ -5,19 +5,19 @@ import javax.validation.constraints.NotBlank;
 
 
 public class LoginUsuario {
-    
     @NotBlank
-    private String nickname;
-    
+    private String nombreUsuario;
     @NotBlank
     private String password;
+    
+    //Getter & Setter
 
-    public String getNickname() {
-        return nickname;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getPassword() {

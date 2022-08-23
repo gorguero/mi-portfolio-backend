@@ -17,50 +17,41 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JwtProvider {
-    
     private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
     
     @Value("${jwt.secret}")
     private String secret;
-    
     @Value("${jwt.expiration}")
     private int expiration;
     
     public String generateToken(Authentication authentication){
-        
         UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
-        
         return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
-                .setIssuedAt(new Date()) /*Registra la fecha del sistema*/
+                .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime()+expiration*1000))
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
     
-    public String getNicknameFromToken(String token){
+    public String getNombreUSuarioFromToken(String token){
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     }
     
     public boolean validateToken(String token){
-        
         try{
-            
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
-            
-        }catch(MalformedJwtException e){ /*Error si el token esta mal formado*/
-            logger.error("Token malformado");
-        }catch(UnsupportedJwtException e){
+        }catch (MalformedJwtException e){
+            logger.error("Token mal formado");
+        }catch (UnsupportedJwtException e){
             logger.error("Token no soportado");
-        }catch(ExpiredJwtException e){
+        }catch (ExpiredJwtException e){
             logger.error("Token expirado");
-        }catch(IllegalArgumentException e){ /*Cuando el token esta vacio*/
+        }catch (IllegalArgumentException e){
             logger.error("Token vacio");
-        }catch(SignatureException e){ /*Firma invalida*/
-            logger.error("Firma no valida");
+        }catch (SignatureException e){
+            logger.error("Firma no válida");
         }
-        
         return false;
     }
-    
 }

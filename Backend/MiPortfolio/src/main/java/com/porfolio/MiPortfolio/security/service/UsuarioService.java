@@ -2,32 +2,32 @@
 package com.porfolio.MiPortfolio.security.service;
 
 import com.porfolio.MiPortfolio.security.Entity.Usuario;
-import com.porfolio.MiPortfolio.security.repository.IUsuarioRepository;
+import com.porfolio.MiPortfolio.security.repository.iUsuarioRepository;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 @Transactional
 public class UsuarioService {
-    
     @Autowired
-    IUsuarioRepository iUsuarioRepository;
+    iUsuarioRepository iusuarioRepository;
     
-    public Optional<Usuario> getByNickname(String nickname){
-        return iUsuarioRepository.findByNombreUsuario(nickname);
+    public Optional<Usuario> getByNombreUsuario(String nombreUsuario){
+        return iusuarioRepository.findByNombreUsuario(nombreUsuario);
     }
-    public boolean existsByNickname(String nickname){
-        return iUsuarioRepository.existsByNickname(nickname);
+    
+    public boolean existsByNombreUsuario(String nombreUsuario){
+        return iusuarioRepository.existsByNombreUsuario(nombreUsuario);
     }
     
     public boolean existsByEmail(String email){
-        return iUsuarioRepository.existsByEmail(email);
+        return iusuarioRepository.existsByEmail(email);
     }
     
     public void save(Usuario usuario){
-        iUsuarioRepository.save(usuario);
+        iusuarioRepository.save(usuario);
     }
-    
 }

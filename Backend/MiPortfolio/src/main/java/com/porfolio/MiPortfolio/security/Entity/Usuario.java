@@ -16,37 +16,35 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class Usuario {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
     @NotNull
-    private String name;
-    
+    private String nombre;
     @NotNull
     @Column(unique = true)
-    private String nickname;
-    
+    private String nombreUsuario;
     @NotNull
     private String email;
-    
-    @NotNull    
+    @NotNull
     private String password;
-    
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name ="usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
+    
+    //Constructores
 
     public Usuario() {
     }
 
-    public Usuario(String name, String nickname, String email, String password) {
-        this.name = name;
-        this.nickname = nickname;
+    public Usuario(String nombre, String nombreUsuario, String email, String password) {
+        this.nombre = nombre;
+        this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
     }
+    
+    //Getter Y Setter
 
     public int getId() {
         return id;
@@ -56,20 +54,20 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getEmail() {
@@ -95,5 +93,5 @@ public class Usuario {
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
     }
-       
+    
 }

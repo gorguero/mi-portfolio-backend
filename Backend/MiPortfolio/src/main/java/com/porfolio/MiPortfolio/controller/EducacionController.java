@@ -5,6 +5,7 @@ import com.porfolio.MiPortfolio.interfaces.IEducacionService;
 import com.porfolio.MiPortfolio.model.Educacion;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +30,14 @@ public class EducacionController {
         return educacionService.getEducacion();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/educacion/crear")
     public String agregarEducacion(@RequestBody Educacion educacion){
         educacionService.saveEducacion(educacion);
         return "Se ha creado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/educacion/borrar/{id}")
     public String eliminarEducacion(@PathVariable Long id){
         educacionService.deleteEducacion(id);
@@ -42,6 +45,7 @@ public class EducacionController {
     }
     
     // URL -> PUERTO/educacion/editar/{id}/nombre&tanto&tanto&
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/educacion/editar/{id}")
     public Educacion editarEducacion(@PathVariable Long id,
                                     @RequestParam ("nombreInsti") String nuevoNombreInsti,
@@ -63,6 +67,7 @@ public class EducacionController {
         return educacion;
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping ("/educacion/encontrar/{id}")
     public Educacion findEducacion(@PathVariable Long id){
         return educacionService.findEducacion(id);
