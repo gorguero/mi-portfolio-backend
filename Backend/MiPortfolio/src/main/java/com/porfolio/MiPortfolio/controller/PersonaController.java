@@ -73,7 +73,7 @@ public class PersonaController {
         
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @GetMapping ("/persona/encontrar/{id}")
     public Persona findPersona(@PathVariable Long id){
         return personaService.findPersona(id);
