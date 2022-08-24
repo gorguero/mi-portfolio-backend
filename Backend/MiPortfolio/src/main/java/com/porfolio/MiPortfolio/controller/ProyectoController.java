@@ -6,6 +6,7 @@ import com.porfolio.MiPortfolio.model.Proyecto;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,18 +29,21 @@ public class ProyectoController {
         return proyectoService.getProyecto();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/proyecto/crear")
     public String agregarProyecto(@RequestBody Proyecto proyecto){
         proyectoService.saveProyecto(proyecto);
         return "Se ha creado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/proyecto/borrar/{id}")
     public String eliminarProyecto(@PathVariable Long id){
         proyectoService.deleteProyecto(id);
         return "Se ha eliminado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/proyecto/editar/{id}")
     public Proyecto editarProyecto(@PathVariable Long id,
                                 @RequestParam ("titulo") String nuevoTitulo,

@@ -5,6 +5,7 @@ import com.porfolio.MiPortfolio.interfaces.IExperienciaLaboralService;
 import com.porfolio.MiPortfolio.model.ExperienciaLaboral;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class ExperienciaLaboralController {
         return expLaboralService.getExperienciaLaboral();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/expLaboral/crear")
     public String agregarExperienciaLaboral(@RequestBody ExperienciaLaboral expLaboral){
         expLaboralService.saveExperienciaLaboral(expLaboral);
         return "Se ha creado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/expLaboral/borrar/{id}")
     public String eliminarExperienciaLaboral(@PathVariable Long id){
         expLaboralService.deleteExperienciaLaboral(id);
         return "Se ha eliminado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/expLaboral/editar/{id}")
     public ExperienciaLaboral editarExpLaboral(@PathVariable Long id,
                                              @RequestParam ("nombreEmpresa") String nuevoNombreEmpresa,
@@ -63,6 +67,7 @@ public class ExperienciaLaboralController {
         
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping ("/expLaboral/encontrar/{id}")
     public ExperienciaLaboral findEducacion(@PathVariable Long id){
         return expLaboralService.findExperienciaLaboral(id);
