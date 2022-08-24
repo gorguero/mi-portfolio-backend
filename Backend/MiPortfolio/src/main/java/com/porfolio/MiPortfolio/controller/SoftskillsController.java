@@ -5,6 +5,7 @@ import com.porfolio.MiPortfolio.interfaces.ISoftskillService;
 import com.porfolio.MiPortfolio.model.Softskill;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,18 +28,21 @@ public class SoftskillsController {
         return skillService.getSoftskill();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/skill/crear")
     public String agregarSoftskill(@RequestBody Softskill skill){
         skillService.saveSoftskill(skill);
         return "Se ha creado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/skill/borrar/{id}")
     public String eliminarSoftskill(@PathVariable Long id){
         skillService.deleteSoftskill(id);
         return "Se ha eliminado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/skill/editar/{id}")
     public Softskill editarSoftskill(@PathVariable Long id,
                                     @RequestParam ("nombre") String nuevoNombre,
@@ -54,6 +58,7 @@ public class SoftskillsController {
         return skill;
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping ("/skill/encontrar/{id}")
     public Softskill findSoftskill(@PathVariable Long id){
         return skillService.findSoftskill(id);

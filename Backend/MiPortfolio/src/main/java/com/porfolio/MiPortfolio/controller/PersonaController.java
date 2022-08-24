@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.porfolio.MiPortfolio.interfaces.IPersonaService;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -27,18 +28,21 @@ public class PersonaController {
         return personaService.getPersona();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/persona/crear")
     public String agregarPersona(@RequestBody Persona persona){
         personaService.savePersona(persona);
         return "Se creado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/persona/borrar/{id}")
     public String eliminarPersona(@PathVariable Long id){
         personaService.deletePersona(id);
         return "Se ha eliminado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/persona/editar/{id}")
     public Persona editarPersona(@PathVariable Long id,
                                 @RequestParam("nombre") String nuevoNombre,
@@ -69,6 +73,7 @@ public class PersonaController {
         
     }
     
+    //@PreAuthorize("hasRole('ADMIN')")
     @GetMapping ("/persona/encontrar/{id}")
     public Persona findPersona(@PathVariable Long id){
         return personaService.findPersona(id);

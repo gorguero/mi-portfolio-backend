@@ -5,6 +5,7 @@ import com.porfolio.MiPortfolio.interfaces.ITecnologiaService;
 import com.porfolio.MiPortfolio.model.Tecnologia;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,18 +28,21 @@ public class TecnologiaController {
         return tecnologiaService.getTecnologia();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/tecnologia/crear")
     public String agregarTecnologia(@RequestBody Tecnologia tecnologia){
         tecnologiaService.saveTecnologia(tecnologia);
         return "Se ha creado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/tecnologia/borrar/{id}")
     public String eliminarTecnologia(@PathVariable Long id){
         tecnologiaService.deleteTecnologia(id);
         return "Se ha eliminado correctamente";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/tecnologia/editar/{id}")
     public Tecnologia editarTecnologia(@PathVariable Long id,
                                     @RequestParam ("nombre") String nuevoNombre,
@@ -54,6 +58,7 @@ public class TecnologiaController {
         return tecnologia;
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping ("/tecnologia/encontrar/{id}")
     public Tecnologia findTecnologia(@PathVariable Long id){
         return tecnologiaService.findTecnologia(id);
